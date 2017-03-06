@@ -41,6 +41,10 @@ application.properties
 ```
 mvn install
 ```
+## Run
+```
+java -jar ./target/DreamShopTest-1.0-SNAPSHOT.jar
+```
 ## Test on browser or CURL
 
 ### Methods 
