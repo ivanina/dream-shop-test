@@ -77,4 +77,29 @@ public class TestDataController {
         counter.incrementAndGet();
         return msg;
     }
+
+    @RequestMapping("/create-test-order")
+    public RespMsg createTestOrder(){
+        Order order = null;
+        List<Customer> customerList = customerManager.getAll();
+        if(customerList == null || customerList.size() == 0){
+            return new RespMsg(1,"List of customers is empty");
+        }
+        order = orderManger.getActiveByCustomer(customerList.get(0));
+        if(order != null){
+            return new RespMsg(1,"For customer with ID: '"+customerList.get(0).getId()+"' already exist open order (ID:'"+order.getId()+"')");
+        }
+        List<Address> addressList = addressManager.getAll();
+        if(addressList == null || addressList.size() == 0){
+            return new RespMsg(1,"List of addresses is empty");
+        }
+        List<Product> productList = productManager.getAll();
+        if(productList == null || productList.size() == 0){
+            return new RespMsg(1,"List of products is empty");
+        }
+        order = new Order(customerList.get(0),productList.get(0));
+        order.setAddress(addressList.get(0));
+        orderManger.add(order);
+        return new RespMsg(0,"Order created. ID: "+order.getId());
+    }
 }

@@ -110,6 +110,11 @@ public class Order {
 
     public BigDecimal getTotal() {
         if(total == null) total = new BigDecimal(0.0);
+        if(total.compareTo(BigDecimal.ZERO) == 0 && products != null && products.size() > 0 ){
+            for (Product product : products){
+                addTotal(product.getPrice());
+            }
+        }
         return total;
     }
 
@@ -118,8 +123,9 @@ public class Order {
     }
 
     public void addTotal(BigDecimal total) {
-        if(total == null) total = new BigDecimal(0.0);
-        this.total.add(total);
+        if(total == null) return;
+        if(this.total == null) this.total = new BigDecimal(0.0);
+        this.total = this.total.add(total);
     }
 
     public Date getDate() {
