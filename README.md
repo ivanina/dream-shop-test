@@ -66,7 +66,8 @@ http://localhost:8080/order/add/address?customer_id=1&address_id=1
 ```
 Checkout
 ```
-http://localhost:8080/order/checkout
+http://localhost:8080/order/compete
 ```
+-- "compete" this is small mistake. This means "checkout"  :)
 
 
