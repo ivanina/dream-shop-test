@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "dream_shop_products")
+@Table(name = "shop_products")
 public class Product {
     @Id
     @Column(name="id")
@@ -82,3 +82,4 @@ public class Product {
         this.count = count;
     }
 }
+

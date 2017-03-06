@@ -3,7 +3,7 @@ package entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "dream_shop_addresses")
+@Table(name = "shop_addresses")
 public class Address {
     @Id
     @Column(name = "id")

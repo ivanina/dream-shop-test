@@ -1,13 +1,16 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "dream_shop_orders")
+@Table(name = "shop_orders")
 public class Order {
     @Id
     @Column(name="id")
@@ -62,6 +65,13 @@ public class Order {
         this.customerId = customer.getId();
     }
 
+    public Order(Customer customer, Product product) {
+        this.customer = customer;
+        this.customerId = customer.getId();
+        this.addProduct(product);
+        this.addTotal(product.getPrice());
+    }
+
     public Order(Customer customer, Address address, Set<Product> products) {
         this.customer = customer;
         this.customerId = customer.getId();
@@ -70,7 +80,7 @@ public class Order {
         this.products = products;
         if(products != null){
             for (Product product : products){
-                this.total = this.total.add(product.getPrice()) ;
+                this.addTotal(product.getPrice());
             }
         }else{
             this.total = new BigDecimal(0.0);
@@ -102,11 +112,17 @@ public class Order {
     }
 
     public BigDecimal getTotal() {
+        if(total == null) total = new BigDecimal(0.0);
         return total;
     }
 
     public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+
+    public void addTotal(BigDecimal total) {
+        if(total == null) total = new BigDecimal(0.0);
+        this.total.add(total);
     }
 
     public Date getDate() {

@@ -1,5 +1,4 @@
 package entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -7,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
-@Table(name = "dream_shop_customers")
+@Table(name = "shop_customers")
 public class Customer {
     @Id
     @Column(name="id")
@@ -20,6 +19,7 @@ public class Customer {
     @Column(name="email", nullable = false, unique = true)
     private String email;
 
+    @JsonIgnore
     @Column(name="password")
     private String passwordHsh;
 
