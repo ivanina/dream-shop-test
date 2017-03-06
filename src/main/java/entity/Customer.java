@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
-@Table(name = "shop_customers")
+@Table(name = "dream_shop_customers")
 public class Customer {
     @Id
     @Column(name="id")

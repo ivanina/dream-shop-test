@@ -2,7 +2,6 @@ package dao;
 
 import entity.Customer;
 import entity.Order;
-import entity.Product;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

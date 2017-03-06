@@ -1,16 +1,13 @@
 package entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "shop_orders")
+@Table(name = "dream_shop_orders")
 public class Order {
     @Id
     @Column(name="id")
@@ -47,7 +44,7 @@ public class Order {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
-            name = "shop_order_products",
+            name = "dream_shop_order_products",
             joinColumns = {
                     @JoinColumn(name = "order_id",nullable = false, updatable = false)
             },
