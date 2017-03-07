@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import entity.Customer;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 @Transactional
 public class CustomerManager {

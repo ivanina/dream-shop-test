@@ -1,9 +1,7 @@
 package controller;
 
 import base.RespMsg;
-import dao.AddressManager;
 import dao.CustomerManager;
-import dao.ProductManager;
 import entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +15,7 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private CustomerManager customerManager;
-    @Autowired
-    private ProductManager productManager;
-    @Autowired
-    private AddressManager addressManager;
+
 
 
     @RequestMapping("/customer/create")
@@ -29,14 +24,8 @@ public class CustomerController {
             @RequestParam(value = "email",required = true) String email,
             @RequestParam(value = "credit",required = false) Integer credit
     ) {
-        RespMsg msg = new RespMsg("success");
-        Customer customer = new Customer(name,email,new BigDecimal(credit!=null?credit:10));
-        try {
-            customerManager.add(customer);
-        }catch (Exception e){
-            msg.setMsg("ERROR: "+ e.getMessage());
-        }
-        return msg;
+        customerManager.add(new Customer(name,email,new BigDecimal(credit!=null?credit:10)));
+        return new RespMsg("success");
     }
 
 
@@ -46,14 +35,13 @@ public class CustomerController {
             @RequestParam(value = "email",required = false) String email,
             @RequestParam(value = "id",required = false) Long id
     ){
-        RespMsg msg = new RespMsg("success");
         Customer customer = getCustomer(id,email);
         if(customer == null){
             return new RespMsg("customer not found");
         }
         customer.setCredit( new BigDecimal(credit) );
         customerManager.update(customer);
-        return msg;
+        return new RespMsg("success");
     }
 
     @RequestMapping("/customer/list")

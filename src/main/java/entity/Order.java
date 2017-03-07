@@ -165,7 +165,7 @@ public class Order {
         this.products.addAll(products);
         if(this.products != null){
             for (Product product : this.products){
-                this.total = this.total.add(product.getPrice()) ;
+                this.total = this.getTotal().add(product.getPrice()) ;
             }
         }else{
             this.total = new BigDecimal(0.0);

@@ -81,5 +81,15 @@ public class Product {
     public void setCount(Integer count) {
         this.count = count;
     }
+
+    public void countDecries(){
+        countDecries(1);
+    }
+    public void countDecries(Integer count){
+        if(count != null){
+            this.count = this.count-count;
+            if(this.count < 0) throw new IndexOutOfBoundsException();
+        }
+    }
 }
 

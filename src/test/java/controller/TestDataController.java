@@ -32,6 +32,11 @@ public class TestDataController {
 
     private final AtomicLong counter = new AtomicLong();
 
+    @RequestMapping("/test")
+    public RespMsg test() {
+        return new RespMsg("success");
+    }
+
     @RequestMapping("/prepare-date")
     public RespMsg prepareData(){
         RespMsg msg = new RespMsg("success");

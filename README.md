@@ -8,6 +8,12 @@ Change DB access in
 ```
 application.properties
 ```
+Default configuration
+```
+jdbc:mariadb://localhost:3306/test
+username: test
+password: test
+```
 ## Installation
 ```
 mvn install
@@ -19,55 +25,59 @@ java -jar ./target/DreamShopTest-1.0-SNAPSHOT.jar
 ## Test on browser or CURL
 
 ### Methods 
-Prepare test data
-```
-http://localhost:8080/prepare-date
-```
-Customers
+
+List of Customers
 ```
 http://localhost:8080/customer/list
 ```
 View customer
 ```
-http://localhost:8080/customer/view?email=email@email.com
+http://localhost:8080/customer/view?email=smith@ohn.com
 ```
 or
 ```
-http://localhost:8080/customer/view?id=1
+http://localhost:8080/customer/view?id=2
 ```
 Set credit for customer
 ```
-http://localhost:8080/customer/set-credit?id=1&credit=111
+http://localhost:8080/customer/set-credit?id=1&credit=45
 ```
 or
 ```
-http://localhost:8080/customer/set-credit?email=email@email.com&credit=111
+http://localhost:8080/customer/set-credit?email=smith@ohn.com&credit=45
 ```
 Create customer (without validation by email and without email validation)
 ```
-http://localhost:8080/customer/create?name=name&email=email@email.com&credit=111
+http://localhost:8080/customer/create?name=Test-Name&email=test-email@email.com&credit=111
+```
+List of products
+```
+http://localhost:8080/product/list
 ```
 
 List of orders
 ```
 http://localhost:8080/order/list
 ```
-List of orders by customer (customer_id)
+Create order for customer
 ```
-http://localhost:8080/order/list?customer_id=1
+http://localhost:8080/order/new?customer_id=2
 ```
-Add product to exists or new order
+List of orders by customer
 ```
-http://localhost:8080/order/add/product?customer_id=1&product_id=1
+http://localhost:8080/order/list?customer_id=2
 ```
-Add address to actualy order for customer
+Add product to order
 ```
-http://localhost:8080/order/add/address?customer_id=1&address_id=1
+http://localhost:8080/order/add/product?order_id=1&product_id=3
+```
+Add address to order 
+```
+http://localhost:8080/order/add/address?order_id=1&address_id=1
 ```
 Checkout
 ```
-http://localhost:8080/order/compete
+http://localhost:8080/order/checkout?order_id=1
 ```
--- "compete" this is small mistake. This means "checkout"  :)
 
 
